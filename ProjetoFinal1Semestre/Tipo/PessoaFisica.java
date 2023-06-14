@@ -26,6 +26,7 @@ public class PessoaFisica extends Banco {
         contaPessoaFisica.setCpf(sc.nextDouble());
         System.out.println("Informe o numero que deseja para sua conta");
         contaPessoaFisica.setnConta(sc.nextInt());
+        System.out.println("============================================");
         System.out.println("Cadastro Realizado com Sucesso");
         System.out.println("========================================");
         contas[numContas] = contaPessoaFisica;

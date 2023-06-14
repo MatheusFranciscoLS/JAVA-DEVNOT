@@ -26,6 +26,7 @@ public class PessoaJuridica extends Banco {
         contaPessoaJuridica.setCnpj(sc.nextDouble());
         System.out.println("Informe o numero que deseja para sua conta");
         contaPessoaJuridica.setnConta(sc.nextInt());
+        System.out.println("============================================");
         System.out.println("Cadastro Realizado com Sucesso");
         System.out.println("========================================");
         contas[numContas] = contaPessoaJuridica;

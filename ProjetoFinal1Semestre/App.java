@@ -6,7 +6,6 @@ import ProjetoFinal1Semestre.Tipo.PessoaFisica;
 import ProjetoFinal1Semestre.Tipo.PessoaJuridica;
 
 public class App {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PessoaFisica pF1 = new PessoaFisica();
@@ -45,11 +44,14 @@ public class App {
                         String nome = sc.next();
                         PessoaFisica contaEncontrada = pF1.buscarContaPeloNome(nome);
                         if (contaEncontrada != null) {
+                            System.out.println("============================================");
                             System.out.println("Conta encontrada: " + nome);
                             System.out.println("============================================");
                             pF1.mostrarAcao();
                         } else {
+                            System.out.println("============================================");
                             System.out.println("Conta não encontrada");
+                            System.out.println("============================================");
                             System.out.println("Informe a ação Desejada:"
                                     + "\n1-Criar Conta Fisica"
                                     + "\n2-Criar Conta Juridica"
@@ -62,11 +64,14 @@ public class App {
                         int nConta = sc.nextInt();
                         PessoaFisica contaEncontrada = pF1.buscarContaPeloNumero(nConta);
                         if (contaEncontrada != null) {
+                            System.out.println("============================================");
                             System.out.println("Conta encontrada: " + nConta);
                             System.out.println("============================================");
                             pF1.mostrarAcao();
                         } else {
+                            System.out.println("============================================");
                             System.out.println("Conta não encontrada");
+                            System.out.println("============================================");
                             System.out.println("Informe a ação Desejada:"
                                     + "\n1-Criar Conta Fisica"
                                     + "\n2-Criar Conta Juridica"
@@ -76,7 +81,7 @@ public class App {
 
                         }
                     } else {
-                        System.out.println("Digite uma opção valida");
+                        System.out.println("Opção inválida. Digite uma opção válida (1 ou 2).");
                     }
                     break;
                 case 4:
@@ -90,33 +95,63 @@ public class App {
                         String nome = sc.next();
                         PessoaJuridica contaEncontrada = pJ1.buscarContaPeloNome(nome);
                         if (contaEncontrada != null) {
+                            System.out.println("============================================");
                             System.out.println("Conta encontrada: " + nome);
                             System.out.println("============================================");
                             pJ1.mostrarAcao();
                         } else {
+                            System.out.println("============================================");
                             System.out.println("Conta não encontrada");
+                            System.out.println("============================================");
+                            System.out.println("Informe a ação Desejada:"
+                                    + "\n1-Criar Conta Fisica"
+                                    + "\n2-Criar Conta Juridica"
+                                    + "\n3-Acessar Conta Fisica"
+                                    + "\n4-Acessar Conta Juridica"
+                                    + "\n5-Sair");
                         }
                     } else if (opcao3 == 2) {
                         System.out.println("Digite o número da conta:");
                         int nConta = sc.nextInt();
                         PessoaJuridica contaEncontrada = pJ1.buscarContaPeloNumero(nConta);
                         if (contaEncontrada != null) {
+                            System.out.println("============================================");
                             System.out.println("Conta encontrada: " + nConta);
                             System.out.println("============================================");
                             pJ1.mostrarAcao();
                         } else {
+                            System.out.println("============================================");
                             System.out.println("Conta não encontrada");
+                            System.out.println("============================================");
+                            System.out.println("Informe a ação Desejada:"
+                                    + "\n1-Criar Conta Fisica"
+                                    + "\n2-Criar Conta Juridica"
+                                    + "\n3-Acessar Conta Fisica"
+                                    + "\n4-Acessar Conta Juridica"
+                                    + "\n5-Sair");
                         }
                     } else {
-                        System.out.println("Digite uma opção valida");
+                        System.out.println("============================================");
+                        System.out.println("Digite um número valido");
+                        System.out.println("============================================");
                     }
                     break;
                 case 5:
+                System.out.println("============================================");
                     System.out.println("Voce saiu do Banco");
+                    System.out.println("============================================");
                     banco = false;
                     break;
                 default:
-                    System.out.println("Informe um nº válido");
+                System.out.println("============================================");
+                    System.out.println("Informe um nº válido (1 a 5)");
+                    System.out.println("============================================");
+                    System.out.println("Informe a ação Desejada:"
+                    + "\n1-Criar Conta Fisica"
+                    + "\n2-Criar Conta Juridica"
+                    + "\n3-Acessar Conta Fisica"
+                    + "\n4-Acessar Conta Juridica"
+                    + "\n5-Sair");
                     break;
             }
         }
