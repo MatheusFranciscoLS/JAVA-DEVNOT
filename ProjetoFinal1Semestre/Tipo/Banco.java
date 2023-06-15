@@ -2,12 +2,16 @@ package ProjetoFinal1Semestre.Tipo;
 
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Banco {
     Scanner sc = new Scanner(System.in);
 
-    public double nConta;
-    public double saldo;
-    public String nome;
+    double nConta;
+    double saldo;
+    String nome;
+    double salario;
+    double faturamento;
 
     public double getnConta() {
         return nConta;
@@ -31,6 +35,22 @@ public class Banco {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public double getFaturamento() {
+        return faturamento;
+    }
+
+    public void setFaturamento(double faturamento) {
+        this.faturamento = faturamento;
     }
 
     public void saldo() {
@@ -99,12 +119,16 @@ public class Banco {
         if (opcao == 1) {
             System.out.println("Qual é o valor do empréstimo?");
             double valor = sc.nextDouble();
-            if (valor > 0) {
-                double novoSaldo = saldo + valor;
-                System.out.println("Empréstimo de " + valor + " aprovado!");
-                System.out.println("Seu saldo atual é de: " + novoSaldo);
+            if (salario >= 1500 || faturamento >= 1500) {
+                System.out.println("Disponivel até R$2500 para empréstimo");
+                System.out.println("Digite a quantidade solicitada");
+                double emprestimo = sc.nextDouble();
+                saldo += emprestimo;
+                System.out.println("Empréstimo realizado com sucesso!"
+                        + "\n Valor solicitado: R$" + emprestimo
+                        + "\n Saldo após empréstimo: R$" + saldo);
             } else {
-                System.out.println("Valor inválido para o empréstimo.");
+                System.out.println("Valor inválido para o empréstimo. Salario ou Faturamento baixo");
             }
         } else if (opcao == 2) {
             System.out.println("============================================");

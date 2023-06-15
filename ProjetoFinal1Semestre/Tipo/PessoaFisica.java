@@ -2,13 +2,15 @@ package ProjetoFinal1Semestre.Tipo;
 
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class PessoaFisica extends Banco {
     Scanner sc = new Scanner(System.in);
-    private final int maxConta = 100;
-    private PessoaFisica[] contas = new PessoaFisica[maxConta];
-    private int numContas = 0;
+    int maxConta = 100;
+    PessoaFisica[] contas = new PessoaFisica[maxConta];
+    int numContas = 0;
 
-    public double cpf;
+    double cpf;
 
     public double getCpf() {
         return cpf;
@@ -24,6 +26,8 @@ public class PessoaFisica extends Banco {
         contaPessoaFisica.setNome(sc.next());
         System.out.println("Informe seu CPF (somente numeros)");
         contaPessoaFisica.setCpf(sc.nextDouble());
+        System.out.println("Informe seu Salario (somente numeros)");
+        contaPessoaFisica.setSalario(sc.nextDouble());
         System.out.println("Informe o numero que deseja para sua conta");
         contaPessoaFisica.setnConta(sc.nextInt());
         System.out.println("============================================");
@@ -33,11 +37,11 @@ public class PessoaFisica extends Banco {
         numContas++;
 
         System.out.println("Informe a ação Desejada:"
-        + "\n1-Criar Conta Fisica"
-        + "\n2-Criar Conta Juridica"
-        + "\n3-Acessar Conta Fisica"
-        + "\n4-Acessar Conta Juridica"
-        + "\n5-Sair");
+                + "\n1-Criar Conta Fisica"
+                + "\n2-Criar Conta Juridica"
+                + "\n3-Acessar Conta Fisica"
+                + "\n4-Acessar Conta Juridica"
+                + "\n5-Sair");
     }
 
     public PessoaFisica buscarContaPeloNumero(int numeroConta) {

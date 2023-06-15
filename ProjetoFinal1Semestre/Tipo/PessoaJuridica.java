@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class PessoaJuridica extends Banco {
     Scanner sc = new Scanner(System.in);
-    private final int maxConta = 100;
-    private PessoaJuridica[] contas = new PessoaJuridica[maxConta];
-    private int numContas = 0;
+    int maxConta = 100;
+    PessoaJuridica[] contas = new PessoaJuridica[maxConta];
+    int numContas = 0;
 
-    public double cnpj;
+    double cnpj;
 
     public double getCnpj() {
         return cnpj;
@@ -20,10 +20,12 @@ public class PessoaJuridica extends Banco {
 
     public void criarContaJuridica() {
         PessoaJuridica contaPessoaJuridica = new PessoaJuridica();
-        System.out.println("Informe o nome da Corporação");
+        System.out.println("Informe o Nome da Empresa");
         contaPessoaJuridica.setNome(sc.next());
         System.out.println("Informe seu CNPJ (somente números)");
         contaPessoaJuridica.setCnpj(sc.nextDouble());
+        System.out.println("Informe seu Faturamento (somente números)");
+        contaPessoaJuridica.setFaturamento(sc.nextDouble());
         System.out.println("Informe o numero que deseja para sua conta");
         contaPessoaJuridica.setnConta(sc.nextInt());
         System.out.println("============================================");
@@ -33,11 +35,11 @@ public class PessoaJuridica extends Banco {
         numContas++;
 
         System.out.println("Informe a ação Desejada:"
-        + "\n1-Criar Conta Fisica"
-        + "\n2-Criar Conta Juridica"
-        + "\n3-Acessar Conta Fisica"
-        + "\n4-Acessar Conta Juridica"
-        + "\n5-Sair");
+                + "\n1-Criar Conta Fisica"
+                + "\n2-Criar Conta Juridica"
+                + "\n3-Acessar Conta Fisica"
+                + "\n4-Acessar Conta Juridica"
+                + "\n5-Sair");
     }
 
     public PessoaJuridica buscarContaPeloNumero(int numeroConta) {
