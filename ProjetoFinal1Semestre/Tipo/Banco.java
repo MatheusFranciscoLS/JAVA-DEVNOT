@@ -2,16 +2,12 @@ package ProjetoFinal1Semestre.Tipo;
 
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
 public class Banco {
     Scanner sc = new Scanner(System.in);
 
-    double nConta;
-    double saldo;
+    private double nConta;
+    private double saldo;
     String nome;
-    double salario;
-    double faturamento;
 
     public double getnConta() {
         return nConta;
@@ -35,22 +31,6 @@ public class Banco {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-
-    public double getFaturamento() {
-        return faturamento;
-    }
-
-    public void setFaturamento(double faturamento) {
-        this.faturamento = faturamento;
     }
 
     public void saldo() {
@@ -112,23 +92,44 @@ public class Banco {
     }
 
     public void emprestimo() {
+        System.out.println("Seu saldo é de: " + saldo);
         System.out.println("Você deseja pedir um empréstimo?");
         System.out.println("Digite 1 para sim e 2 para não");
         int opcao = sc.nextInt();
 
         if (opcao == 1) {
-            System.out.println("Qual é o valor do empréstimo?");
-            double valor = sc.nextDouble();
-            if (salario >= 1500 || faturamento >= 1500) {
-                System.out.println("Disponivel até R$2500 para empréstimo");
-                System.out.println("Digite a quantidade solicitada");
-                double emprestimo = sc.nextDouble();
-                saldo += emprestimo;
-                System.out.println("Empréstimo realizado com sucesso!"
-                        + "\n Valor solicitado: R$" + emprestimo
-                        + "\n Saldo após empréstimo: R$" + saldo);
+
+            if (saldo < 1500) {
+                System.out.println("============================================");
+                System.out.println("Empréstimo negado! Você não possui saldo suficiente, tente colocar saldo antes");
+                System.out.println("============================================");
+                System.out.println("Informe a ação Desejada:"
+                        + "\n1-Verificar Saldo"
+                        + "\n2-Sacar"
+                        + "\n3-Depositar"
+                        + "\n4-Pedir Empréstimo"
+                        + "\n5-Sair da Conta");
+            }
+            if (saldo >= 1500) {
+                System.out.println("Disponível até R$2500 para empréstimo.");
+                System.out.println("Qual é o valor do empréstimo?");
+                double valorEmprestimo = sc.nextDouble();
+                saldo += valorEmprestimo;
+                System.out.println("Valor solicitado " + valorEmprestimo);
+                System.out.println("Empréstimo aprovado! Seu saldo atual é de: " + saldo);
+            } else if (saldo >= 2500) {
+                System.out.println("Disponível até R$5000 para empréstimo.");
+                System.out.println("Qual é o valor do empréstimo?");
+                double valorEmprestimo = sc.nextDouble();
+                saldo += valorEmprestimo;
+                System.out.println("============================================");
+                System.out.println("Valor solicitado " + valorEmprestimo);
+                System.out.println("Empréstimo aprovado! Seu saldo atual é de: " + saldo);
+                System.out.println("============================================");
             } else {
-                System.out.println("Valor inválido para o empréstimo. Salario ou Faturamento baixo");
+                System.out.println("============================================");
+                System.out.println("Tente colocar um numero saldo antes");
+                System.out.println("============================================");
             }
         } else if (opcao == 2) {
             System.out.println("============================================");

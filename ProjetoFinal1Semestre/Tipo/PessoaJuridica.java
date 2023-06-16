@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class PessoaJuridica extends Banco {
     Scanner sc = new Scanner(System.in);
-    int maxConta = 100;
-    PessoaJuridica[] contas = new PessoaJuridica[maxConta];
-    int numContas = 0;
+    public int maxConta = 100;
+    public PessoaJuridica[] contas = new PessoaJuridica[maxConta];
+    public int numContas = 0;
 
-    double cnpj;
+    public double cnpj;
 
     public double getCnpj() {
         return cnpj;
@@ -24,8 +24,6 @@ public class PessoaJuridica extends Banco {
         contaPessoaJuridica.setNome(sc.next());
         System.out.println("Informe seu CNPJ (somente números)");
         contaPessoaJuridica.setCnpj(sc.nextDouble());
-        System.out.println("Informe seu Faturamento (somente números)");
-        contaPessoaJuridica.setFaturamento(sc.nextDouble());
         System.out.println("Informe o numero que deseja para sua conta");
         contaPessoaJuridica.setnConta(sc.nextInt());
         System.out.println("============================================");
