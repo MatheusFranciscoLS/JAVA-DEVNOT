@@ -106,7 +106,7 @@ public void emprestimo() {
             System.out.println("============================================");
             System.out.println("Empréstimo negado! Você não possui saldo suficiente, tente colocar saldo antes");
             System.out.println("============================================");
-            return; // Retorna para encerrar o método em caso de saldo insuficiente
+            return;
         } else if (saldo < 3000) {
             valorMaximoEmprestimo = 2500;
         } else if (saldo < 6000) {
