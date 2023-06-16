@@ -2,6 +2,8 @@ package ProjetoFinal1Semestre.Tipo;
 
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Banco {
     Scanner sc = new Scanner(System.in);
 
@@ -91,54 +93,47 @@ public class Banco {
         }
     }
 
-    public void emprestimo() {
-        System.out.println("Seu saldo é de: " + saldo);
-        System.out.println("Você deseja pedir um empréstimo?");
-        System.out.println("Digite 1 para sim e 2 para não");
-        int opcao = sc.nextInt();
+public void emprestimo() {
+    System.out.println("Seu saldo é de: " + saldo);
+    System.out.println("Você deseja pedir um empréstimo?");
+    System.out.println("Digite 1 para sim e 2 para não");
+    int opcao = sc.nextInt();
 
-        if (opcao == 1) {
+    if (opcao == 1) {
+        double valorMaximoEmprestimo = 0;
 
-            if (saldo < 1500) {
-                System.out.println("============================================");
-                System.out.println("Empréstimo negado! Você não possui saldo suficiente, tente colocar saldo antes");
-                System.out.println("============================================");
-                System.out.println("Informe a ação Desejada:"
-                        + "\n1-Verificar Saldo"
-                        + "\n2-Sacar"
-                        + "\n3-Depositar"
-                        + "\n4-Pedir Empréstimo"
-                        + "\n5-Sair da Conta");
-            }
-            if (saldo >= 1500) {
-                System.out.println("Disponível até R$2500 para empréstimo.");
-                System.out.println("Qual é o valor do empréstimo?");
-                double valorEmprestimo = sc.nextDouble();
-                saldo += valorEmprestimo;
-                System.out.println("Valor solicitado " + valorEmprestimo);
-                System.out.println("Empréstimo aprovado! Seu saldo atual é de: " + saldo);
-            } else if (saldo >= 2500) {
-                System.out.println("Disponível até R$5000 para empréstimo.");
-                System.out.println("Qual é o valor do empréstimo?");
-                double valorEmprestimo = sc.nextDouble();
-                saldo += valorEmprestimo;
-                System.out.println("============================================");
-                System.out.println("Valor solicitado " + valorEmprestimo);
-                System.out.println("Empréstimo aprovado! Seu saldo atual é de: " + saldo);
-                System.out.println("============================================");
-            } else {
-                System.out.println("============================================");
-                System.out.println("Tente colocar um numero saldo antes");
-                System.out.println("============================================");
-            }
-        } else if (opcao == 2) {
+        if (saldo < 1500) {
             System.out.println("============================================");
-            System.out.println("Você saiu da opção 'Empréstimo'");
+            System.out.println("Empréstimo negado! Você não possui saldo suficiente, tente colocar saldo antes");
             System.out.println("============================================");
+            return; // Retorna para encerrar o método em caso de saldo insuficiente
+        } else if (saldo < 3000) {
+            valorMaximoEmprestimo = 2500;
+        } else if (saldo < 6000) {
+            valorMaximoEmprestimo = 5000;
         } else {
-            System.out.println("Opção inválida. Digite uma opção válida (1 ou 2).");
+            valorMaximoEmprestimo = 10000;
         }
+
+        System.out.println("Disponível até R$" + valorMaximoEmprestimo + " para empréstimo.");
+        System.out.println("Qual é o valor do empréstimo?");
+        double valorEmprestimo = sc.nextDouble();
+
+        if (valorEmprestimo > valorMaximoEmprestimo) {
+            System.out.println("Quantidade solicitada está acima do valor liberado.");
+        } else {
+            saldo += valorEmprestimo;
+            System.out.println("Valor solicitado " + valorEmprestimo);
+            System.out.println("Empréstimo aprovado! Seu saldo atual é de: " + saldo);
+        }
+    } else if (opcao == 2) {
+        System.out.println("============================================");
+        System.out.println("Você saiu da opção 'Empréstimo'");
+        System.out.println("============================================");
+    } else {
+        System.out.println("Opção inválida. Digite uma opção válida (1 ou 2).");
     }
+}
 
     public void mostrarAcao() {
         boolean opcao2 = true;
