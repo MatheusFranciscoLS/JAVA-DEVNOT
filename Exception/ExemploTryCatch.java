@@ -11,8 +11,8 @@ public class ExemploTryCatch {
         if (entrar == JOptionPane.OK_OPTION) {
             while (rodando) {
                 try {
-                    int acao1 = Integer.parseInt(
-                            JOptionPane.showInputDialog("Qual operação deseja fazer?\n 1-Adição\n 2-Substração\n 3-Multiplicação\n 4-Divisão\n 5-Sair"));
+                    int acao1 = Integer.parseInt(JOptionPane.showInputDialog(
+                            "Qual operação deseja fazer?\n 1-Adição\n 2-Substração\n 3-Multiplicação\n 4-Divisão\n 5-Sair"));
                     if (acao1 == 1) {
                         try {
                             int numero1 = Integer.parseInt(JOptionPane.showInputDialog("Digite um Nº Inteiro"));
@@ -77,7 +77,6 @@ public class ExemploTryCatch {
             }
         } else {
             rodando = false;
-
         }
     }
 }
