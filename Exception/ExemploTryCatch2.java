@@ -31,15 +31,13 @@ public class ExemploTryCatch2 {
                 }
 
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Erro - Valor digitado não é um inteiro"
-                        + "\nDigite novamente");
-            } catch (ArithmeticException e) {
-                JOptionPane.showMessageDialog(null, "Erro - não Dividirás por Zero!!!"
-                        + "\nDigite novamente");
+                JOptionPane.showMessageDialog(null, "Erro - Valor digitado não é um inteiro");
+                JOptionPane.showMessageDialog(null, "Erro - não Dividirás por Zero!!!");
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Aconteceu um erro"
-                        + "\nDigite novamente");
-                    }
+                JOptionPane.showMessageDialog(null, "Aconteceu um erro");
+            } finally {
+                JOptionPane.showMessageDialog(null, "Tente Novamente");
+            }
         }
     }
 }
