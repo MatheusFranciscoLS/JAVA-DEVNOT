@@ -32,6 +32,7 @@ public class ExemploTryCatch2 {
 
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Erro - Valor digitado não é um inteiro");
+            }catch (ArithmeticException e){
                 JOptionPane.showMessageDialog(null, "Erro - não Dividirás por Zero!!!");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Aconteceu um erro");
