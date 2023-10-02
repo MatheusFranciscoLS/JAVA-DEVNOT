@@ -1,1 +1,2 @@
-# Aprendizagem SENAI - Linguagem JAVA
+# Java
+Aprendizagem Senai - Programação JAVA 1º Semestre
