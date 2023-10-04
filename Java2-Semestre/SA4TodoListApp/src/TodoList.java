@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
+
 import javax.swing.*;
 
 public class TodoList extends JFrame {
@@ -22,7 +25,7 @@ public class TodoList extends JFrame {
         // Configuração da janela principal
         super("To-Do List App");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400, 300);
+        this.setBounds(500, 150, 400, 400);
 
         // Inicializa o painel principal
         mainPanel = new JPanel();
@@ -63,10 +66,46 @@ public class TodoList extends JFrame {
 
         // Configuração de Listener para os Eventos
 
+        addButton.addActionListener(e -> {
+            addTask();
+        });
+
+        deleteButton.addActionListener(e -> {
+            deleteTask();
+        });
+
+        markDoneButton.addActionListener(e -> {
+            markTaskDone();
+        });
+        filterComboBox.addActionListener(e -> {
+            filterTasks();
+        });
+
+        clearCompletedButton.addActionListener(e -> {
+            clearCompletedTasks();
+        });
+
+        taskInputField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    // Verifica se a tecla Enter foi pressionada
+                    if (!tasks.isEmpty()) {
+                        // Verifica se há tarefas na lista
+                        Task ultimaTask = tasks.get(tasks.size() - 1); // Obtém a última tarefa
+                        String ultimaTaskDescription = ultimaTask.getDescription();
+
+                        // Exibe a última tarefa adicionada em um JOptionPane
+                        JOptionPane.showMessageDialog(TodoList.this,
+                                "Última tarefa adicionada:\n" + ultimaTaskDescription, "Última Tarefa Adicionada",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
     }
 
     // métodos (crud)
-    private void addTask() { // Adicione essa função no botão para criar uma nova tarega
+    private void addTask() { // Adicione essa função no botão para criar uma nova tarefa
         // Adiciona uma nova task à lista de tasks
         String taskDescription = taskInputField.getText().trim();// remove espaços vazios
         if (!taskDescription.isEmpty()) {
@@ -81,8 +120,11 @@ public class TodoList extends JFrame {
         // Exclui a task selecionada da lista de tasks
         int selectedIndex = taskList.getSelectedIndex();
         if (selectedIndex >= 0 && selectedIndex < tasks.size()) {
-            tasks.remove(selectedIndex);
-            updateTaskList();
+            boolean confirmed = showConfirmationDialog();
+            if (confirmed) {
+                tasks.remove(selectedIndex);
+                updateTaskList(); // Atualiza a lista após excluir uma tarefa
+            }
         }
     }
 
@@ -93,6 +135,9 @@ public class TodoList extends JFrame {
             Task task = tasks.get(selectedIndex);
             task.setDone(true);
             updateTaskList();
+
+            JOptionPane.showMessageDialog(this, "Tarefa Concluida", "Tarefa Concluida",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -125,12 +170,17 @@ public class TodoList extends JFrame {
         listModel.clear();
         for (Task task : tasks) {
             listModel.addElement(task.getDescription() + (task.isDone() ? " (Concluída)" : ""));
-
         }
     }
 
     public void run() {
         // Exibe a janela
         this.setVisible(true);
+    }
+
+    private boolean showConfirmationDialog() {
+        int escolha = JOptionPane.showConfirmDialog(this, "Tem certeza de que deseja excluir esta tarefa?",
+                "Confirmação", JOptionPane.YES_NO_OPTION);
+        return escolha == JOptionPane.YES_OPTION;
     }
 }
