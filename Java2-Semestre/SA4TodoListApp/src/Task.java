@@ -8,8 +8,8 @@ public class Task {
         this.description = description;
         this.done = false;
     }
-    // gets and sets
 
+    // gets and sets
     public String getDescription() {
         return description;
     }
