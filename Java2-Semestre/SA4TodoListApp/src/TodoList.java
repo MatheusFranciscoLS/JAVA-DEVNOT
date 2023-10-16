@@ -141,7 +141,8 @@ public class TodoList extends JFrame {
 
     // Adiciona uma nova tarefa à lista
     private void addTask() {
-        String taskDescription = taskInputField.getText().trim(); // Obtém a descrição da tarefa, removendo espaços vazios
+        String taskDescription = taskInputField.getText().trim(); // Obtém a descrição da tarefa, removendo espaços
+                                                                  // vazios
         if (!taskDescription.isEmpty()) {
             Task newTask = new Task(taskDescription); // Cria uma nova tarefa
             tasks.add(newTask); // Adiciona a tarefa à lista
