@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CadastroUsuarios extends JPanel{
+public class CadastroUsuarios extends JPanel {
     // set d frame
     private JTextField inputNome;
     private JTextField inputIdade;

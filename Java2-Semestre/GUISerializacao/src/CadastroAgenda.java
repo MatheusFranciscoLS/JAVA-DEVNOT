@@ -28,7 +28,7 @@ public class CadastroAgenda extends JPanel {
         tableModel.addColumn("Data");
         tableModel.addColumn("Hora");
         tableModel.addColumn("Descrição");
-        
+
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -76,12 +76,6 @@ public class CadastroAgenda extends JPanel {
             @Override
             public void mouseClicked(MouseEvent evt) {
                 linhaSelecionada = table.rowAtPoint(evt.getPoint());
-                if (linhaSelecionada != -1) {
-                    inputUsuario.setText((String) table.getValueAt(linhaSelecionada, 0));
-                    inputData.setText(table.getValueAt(linhaSelecionada, 1).toString());
-                    inputHora.setText(table.getValueAt(linhaSelecionada, 1).toString());
-                    inputDescricao.setText(table.getValueAt(linhaSelecionada, 1).toString());
-                }
             }
         });
         OperacoesAgenda operacoes = new OperacoesAgenda(agendamentos, tableModel, table);
@@ -100,10 +94,9 @@ public class CadastroAgenda extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 operacoes.atualizarAgenda(linhaSelecionada, inputUsuario.getText(),
-                        inputData.getText(),inputHora.getText(),inputDescricao.getText());
+                        inputData.getText(), inputHora.getText(), inputDescricao.getText());
             }
         });
-
 
         apagarButton.addActionListener(new ActionListener() {
             @Override
@@ -123,14 +116,15 @@ public class CadastroAgenda extends JPanel {
                 operacoes.salvarAgenda();
             }
         });
-        
+
     }
 
     private void atualizarTabela() {
         tableModel.setRowCount(0);
         for (Agenda agenda : agendamentos) {
-            tableModel.addRow(new Object[] { agenda.getUsuario(), agenda.getData(),agenda.getHora(),agenda.getDescricao() });
+            tableModel.addRow(
+                    new Object[] { agenda.getUsuario(), agenda.getData(), agenda.getHora(), agenda.getDescricao() });
         }
     }
-    
+
 }
