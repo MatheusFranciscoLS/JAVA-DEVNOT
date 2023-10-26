@@ -78,7 +78,9 @@ public class CadastroAgenda extends JPanel {
                 linhaSelecionada = table.rowAtPoint(evt.getPoint());
             }
         });
+
         OperacoesAgenda operacoes = new OperacoesAgenda(agendamentos, tableModel, table);
+
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

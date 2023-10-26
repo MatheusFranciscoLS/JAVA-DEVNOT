@@ -71,7 +71,9 @@ public class CadastroUsuarios extends JPanel {
                 }
             }
         });
+        
         OperacoesUsuarios operacoes = new OperacoesUsuarios(usuarios, tableModel, table);
+
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
