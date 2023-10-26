@@ -43,7 +43,7 @@ public class OperacoesUsuarios {
     }
 
     public void salvarUsuarios() {
-        Serializacao.serializar("dados.txt", usuarios);
+        Serializacao.serializar("usuarios.txt", usuarios);
     }
 
     private void atualizarTabela() {

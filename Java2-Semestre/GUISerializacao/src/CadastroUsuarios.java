@@ -54,9 +54,9 @@ public class CadastroUsuarios extends JPanel{
         add(inputPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
-        File arquivo = new File("dados.txt");
+        File arquivo = new File("usuarios.txt");
         if (arquivo.exists()) {
-            usuarios = Serializacao.deserializar("dados.txt");
+            usuarios = Serializacao.deserializar("usuarios.txt");
             atualizarTabela();
         }
 
