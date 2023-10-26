@@ -76,6 +76,13 @@ public class CadastroAgenda extends JPanel {
             @Override
             public void mouseClicked(MouseEvent evt) {
                 linhaSelecionada = table.rowAtPoint(evt.getPoint());
+                if (linhaSelecionada != -1) {
+                    inputUsuario.setText((String) table.getValueAt(linhaSelecionada, 0));
+                    inputHora.setText((String) table.getValueAt(linhaSelecionada, 1));
+                    inputData.setText((String) table.getValueAt(linhaSelecionada, 2));
+                    inputDescricao.setText((String) table.getValueAt(linhaSelecionada, 3));
+
+                }
             }
         });
 
