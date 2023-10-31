@@ -1,0 +1,13 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Java2-Semestre/JDBCTeste/lib/postgresql-42.6.0.jar"
+    ],
+    "java.project.sourcePaths": [
+        "Java2-Semestre/JDBCTeste/src",
+        "Java2-Semestre/JDBCOutrosTeste/src",
+        "Java2-Semestre/JDBCMavenTeste/src/main/java/app",
+        "Java2-Semestre/GUISerializacao/src",
+        "Java2-Semestre/JDBCOutrosTesteMaven/src/main/java/com/example"
+    ]
+}
