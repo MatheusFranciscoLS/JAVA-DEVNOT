@@ -1,9 +1,11 @@
+package app;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         try {
             Statement s; // Cria uma instância de Statement para executar comandos SQL.
             String usuario = "postgres"; // Nome de usuário do banco de dados.
@@ -15,7 +17,7 @@ public class Main {
             s = c.createStatement(); // Cria um objeto Statement a partir da conexão.
             // Executa uma codigo SQL de inserção na tabela "contato".
             // ser substituídos pelos valores reais a serem inseridos.
-            s.execute("INSERT INTO contato VALUES('1', 'Matheus', 'matheus@gmail.com')");
+            s.execute("INSERT INTO contato VALUES('3', 'danielMaven', 'danielMavem@gmail.com')");
             c.close(); // Fecha a conexão com o banco de dados após a conclusão da operação.
         } catch (Exception E) {
             System.out.println("\n" + E); // Captura e imprime qualquer exceção que ocorra durante a execução.
