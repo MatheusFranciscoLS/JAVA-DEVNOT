@@ -9,5 +9,6 @@
         "Java2-Semestre/JDBCMavenTeste/src/main/java/app",
         "Java2-Semestre/GUISerializacao/src",
         "Java2-Semestre/JDBCOutrosTesteMaven/src/main/java/com/example"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
