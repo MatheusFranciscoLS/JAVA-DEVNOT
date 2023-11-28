@@ -73,7 +73,7 @@ public class JanelaEstoque extends JPanel {
         JScrollPane jSPane = new JScrollPane();
         add(jSPane);
         tableModel = new DefaultTableModel(new Object[][] {},
-                new String[] { "Nome do Produto", "Código de Barras", "quantidade", "Preço" });
+                new String[] { "Nome do Produto", "Código de Barras", "Quantidade", "Preço" });
         table = new JTable(tableModel);
         jSPane.setViewportView(table);
 
