@@ -102,6 +102,28 @@ public class JanelaEstoque extends JPanel {
         cadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                if (nomeProdutoField.getText().isEmpty() || codBarrasField.getText().isEmpty()
+                        || quantidadeField.getText().isEmpty() || precoField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "ATENÇÃO! \nExistem campos em branco");
+                } else {
+                    // Chama o método "cadastrar" do objeto operacoes com os valores dos campos de
+                    // entrada
+                    
+
+                    // Limpa os campos de entrada após a operação de cadastro
+                    nomeProdutoField.setText("");
+                    codBarrasField.setText("");
+                    quantidadeField.setText("");
+                    precoField.setText("");
+                }
+            }
+
+        });
+
+        editar.addActionListener(new ActionListener() {
+            @Override
+             public void actionPerformed(ActionEvent e) {
                 if (nomeProdutoField.getText().isEmpty() || codBarrasField.getText().isEmpty()
                         || quantidadeField.getText().isEmpty() || precoField.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "ATENÇÃO! \nExistem campos em branco");
@@ -121,27 +143,8 @@ public class JanelaEstoque extends JPanel {
 
         });
 
-        editar.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                if (codBarrasField.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Selecione algo para editar");
-                } else {
-                    operacoes.atualizar(codBarrasField.getText(), nomeProdutoField.getText(),
-                            quantidadeField.getText(), precoField.getText());
-
-                    // Limpa os campos de entrada após a operação de atualização
-                    nomeProdutoField.setText("");
-                    codBarrasField.setText("");
-                    quantidadeField.setText("");
-                    precoField.setText("");
-                    JOptionPane.showMessageDialog(null, "Informação editada com Sucesso!");
-                }
-
-            }
-        });
-
         apagar.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 if (codBarrasField.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Selecione um produto para apagar.");

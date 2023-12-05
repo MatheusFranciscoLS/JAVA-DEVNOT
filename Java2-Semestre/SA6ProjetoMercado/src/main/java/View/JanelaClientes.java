@@ -6,7 +6,6 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -123,74 +122,30 @@ public class JanelaClientes extends JPanel {
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (inputCpf.getText().isEmpty() || inputNome.getText().isEmpty()
-                        || inputTelefone.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "ATENÇÃO! \nExistem campos em branco");
-                } else {
-                    if (!validarFormatoCPF(inputCpf.getText())) {
-                        JOptionPane.showMessageDialog(null,
-                                "CPF inválido! O CPF deve conter apenas números e ter 11 dígitos.");
-                    } else if (!inputTelefone.getText().matches("[0-9]+") || inputTelefone.getText().length() < 11) {
-                        JOptionPane.showMessageDialog(null, "O campo 'Telefone' deve conter apenas números.");
-                        JOptionPane.showMessageDialog(null, "Adicione  no seguinte formato 19999999999.");
-                    } else if (!inputNome.getText().matches("[a-zA-ZÀ-ú\\s]+")) {
-                        JOptionPane.showMessageDialog(null, "O campo 'Nome' deve conter apenas letras.");
-                    }
-
-                    else {
-                        // Chama o método "cadastrar" do objeto operacoes com os valores dos campos de
-                        // entrada
-                        operacoes.cadastrar(inputCpf.getText(), inputNome.getText(), inputTelefone.getText());
-
-                        // Limpa os campos de entrada após a operação de cadastro
-                        inputCpf.setText("");
-                        inputNome.setText("");
-                        inputTelefone.setText("");
-                    }
-                }
-
+                operacoes.cadastrar(inputCpf.getText(), inputNome.getText(), inputTelefone.getText());
+                // Limpa os campos de entrada após a operação de cadastro
+                inputCpf.setText("");
+                inputNome.setText("");
+                inputTelefone.setText("");
             }
         });
 
         editarButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                if (inputCpf.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Selecione algo para editar");
-                } else {
-                    operacoes.atualizar(labelCpf.getText(), labelNome.getText(),
-                            labelTelefone.getText());
-
-                    // Limpa os campos de entrada após a operação de atualização
-                    inputCpf.setText("");
-                    inputNome.setText("");
-                    inputTelefone.setText("");
-                    JOptionPane.showMessageDialog(null, "Informação editada com Sucesso!");
-                }
-
+                operacoes.atualizar(inputCpf.getText(), inputNome.getText(), inputTelefone.getText());
+                // Limpa os campos de entrada após a operação de cadastro
+                inputCpf.setText("");
+                inputNome.setText("");
+                inputTelefone.setText("");
             }
         });
 
         apagarButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                if (inputCpf.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Selecione um cliente para apagar.");
-                } else {
-                    int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja apagar os campos?",
-                            "Confirmação", JOptionPane.YES_NO_OPTION);
-                    if (resposta == JOptionPane.YES_OPTION) {
-                        // Chama o método "apagar" do objeto operacoes com o valor do campo de entrada
-                        // "placa"
-                        operacoes.apagar(inputCpf.getText());
-                        JOptionPane.showMessageDialog(null, "O Cliente " + inputNome.getText() + " de CPF "
-                                + inputCpf.getText() + " foi deletado!");
-                        // Limpa os campos de entrada após a operação de exclusão
-                        inputCpf.setText("");
-                        inputNome.setText("");
-                        inputTelefone.setText("");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "O cliente não foi deletado!");
-                    }
-                }
+                operacoes.apagar(inputCpf.getText());
+                inputCpf.setText("");
             }
         });
     }
@@ -206,11 +161,4 @@ public class JanelaClientes extends JPanel {
         }
     }
 
-    private boolean validarFormatoCPF(String cpf) {
-        // Remove caracteres não numéricos do CPF
-        cpf = cpf.replaceAll("[^0-9]", "");
-
-        // Verifica se o CPF possui 11 dígitos
-        return cpf.length() == 11;
-    }
 }

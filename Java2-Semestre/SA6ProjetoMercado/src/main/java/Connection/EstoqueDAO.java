@@ -130,5 +130,4 @@ public class EstoqueDAO {
             ConnectionFactory.closeConnection(connection, stmt);
         }
     }
-
 }
