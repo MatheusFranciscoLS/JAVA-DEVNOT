@@ -5,11 +5,13 @@ public class Vendas {
     private String cpf;
     private String codBarras;
     private String quantidade;
+    private String data;
 
-    public Vendas(String cpf, String codBarras, String quantidade) {
+    public Vendas(String cpf, String codBarras, String quantidade, String data) {
         this.cpf = cpf;
         this.codBarras = codBarras;
         this.quantidade = quantidade;
+        this.data = data;
     }
 
     public String getCpf() {
@@ -28,12 +30,20 @@ public class Vendas {
         this.codBarras = codBarras;
     }
 
-    public String getquantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
 
-    public void setquantidade(String quantidade) {
+    public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
 }

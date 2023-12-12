@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,7 +19,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.BorderLayout;
 
 import Controller.ClientesControl;
 import Model.ClientesVIP;
@@ -92,8 +94,8 @@ public class JanelaClientes extends JPanel {
         inputFrame.add(inputTelefone);
 
         botoes.add(cadastrarButton);
-        botoes.add(apagarButton);
         botoes.add(editarButton);
+        botoes.add(apagarButton);
 
         this.add(frame1);
         frame1.add(scrollPane, BorderLayout.NORTH);
@@ -122,43 +124,57 @@ public class JanelaClientes extends JPanel {
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                operacoes.cadastrar(inputCpf.getText(), inputNome.getText(), inputTelefone.getText());
-                // Limpa os campos de entrada após a operação de cadastro
-                inputCpf.setText("");
-                inputNome.setText("");
-                inputTelefone.setText("");
+                try {
+                    operacoes.cadastrar(inputCpf.getText(), inputNome.getText(), inputTelefone.getText());
+                    // Limpa os campos de entrada após a operação de cadastro
+                    inputCpf.setText("");
+                    inputNome.setText("");
+                    inputTelefone.setText("");
+                } catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + ex.getMessage());
+                }
             }
         });
 
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                operacoes.atualizar(inputCpf.getText(), inputNome.getText(), inputTelefone.getText());
-                // Limpa os campos de entrada após a operação de cadastro
-                inputCpf.setText("");
-                inputNome.setText("");
-                inputTelefone.setText("");
+                try {
+                    operacoes.atualizar(inputCpf.getText(), inputNome.getText(), inputTelefone.getText());
+                    // Limpa os campos de entrada após a operação de cadastro
+                    inputCpf.setText("");
+                    inputNome.setText("");
+                    inputTelefone.setText("");
+                } catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao editar: " + ex.getMessage());
+                }
             }
         });
 
         apagarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                operacoes.apagar(inputCpf.getText());
-                inputCpf.setText("");
+                try {
+                    operacoes.apagar(inputCpf.getText());
+                    inputCpf.setText("");
+                } catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao apagar: " + ex.getMessage());
+                }
             }
         });
     }
 
-    // atualizar Tabela de Carros com o Banco de Dados
+    // atualizar Tabela de Clientes com o Banco de Dados
     private void atualizarTabela() {
         // atualizar tabela pelo banco de dados
         tableModel.setRowCount(0);
-        clientes = new ClientesDAO().listarTodos();
-        for (ClientesVIP cliente : clientes) {
-            tableModel.addRow(
-                    new Object[] { cliente.getCpf(), cliente.getNome(), cliente.getTelefone() });
+        try {
+            clientes = new ClientesDAO().listarTodos();
+            for (ClientesVIP cliente : clientes) {
+                tableModel.addRow(new Object[] { cliente.getCpf(), cliente.getNome(), cliente.getTelefone() });
+            }
+        } catch (RuntimeException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar dados: " + ex.getMessage());
         }
     }
-
 }

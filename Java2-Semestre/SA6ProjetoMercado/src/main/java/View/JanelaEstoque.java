@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -21,8 +20,6 @@ import javax.swing.table.DefaultTableModel;
 import Connection.EstoqueDAO;
 import Controller.EstoqueControl;
 import Model.Estoque;
-
-import java.lang.Object;;
 
 public class JanelaEstoque extends JPanel {
 
@@ -102,82 +99,62 @@ public class JanelaEstoque extends JPanel {
         cadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                if (nomeProdutoField.getText().isEmpty() || codBarrasField.getText().isEmpty()
-                        || quantidadeField.getText().isEmpty() || precoField.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "ATENÇÃO! \nExistem campos em branco");
-                } else {
+                try {
                     // Chama o método "cadastrar" do objeto operacoes com os valores dos campos de
                     // entrada
-                    
-
+                    operacoes.cadastrar(nomeProdutoField.getText(), codBarrasField.getText(),
+                            quantidadeField.getText(), precoField.getText());
                     // Limpa os campos de entrada após a operação de cadastro
                     nomeProdutoField.setText("");
                     codBarrasField.setText("");
                     quantidadeField.setText("");
                     precoField.setText("");
+                } catch (RuntimeException ex) {
+                    ex.printStackTrace();
                 }
             }
-
         });
 
         editar.addActionListener(new ActionListener() {
             @Override
-             public void actionPerformed(ActionEvent e) {
-                if (nomeProdutoField.getText().isEmpty() || codBarrasField.getText().isEmpty()
-                        || quantidadeField.getText().isEmpty() || precoField.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "ATENÇÃO! \nExistem campos em branco");
-                } else {
-                    // Chama o método "cadastrar" do objeto operacoes com os valores dos campos de
-                    // entrada
-                    operacoes.cadastrar(nomeProdutoField.getText(), codBarrasField.getText(), quantidadeField.getText(),
-                            precoField.getText());
-
-                    // Limpa os campos de entrada após a operação de cadastro
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    operacoes.atualizar(nomeProdutoField.getText(), codBarrasField.getText(),
+                            quantidadeField.getText(), precoField.getText());
                     nomeProdutoField.setText("");
                     codBarrasField.setText("");
                     quantidadeField.setText("");
                     precoField.setText("");
+                } catch (RuntimeException ex) {
+                    ex.printStackTrace();
                 }
             }
-
         });
 
         apagar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (codBarrasField.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Selecione um produto para apagar.");
-                } else {
-                    int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja apagar os campos?",
-                            "Confirmação", JOptionPane.YES_NO_OPTION);
-                    if (resposta == JOptionPane.YES_OPTION) {
-                        // Chama o método "apagar" do objeto operacoes com o valor do campo de entrada
-                        // "placa"
-                        operacoes.apagar(codBarrasField.getText());
-                        JOptionPane.showMessageDialog(null, "O Produto " + nomeProdutoField.getText() + " de Código "
-                                + codBarrasField.getText() + " foi deletado!");
-                        // Limpa os campos de entrada após a operação de exclusão
-                        nomeProdutoField.setText("");
-                        codBarrasField.setText("");
-                        quantidadeField.setText("");
-                        precoField.setText("");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "O produto não foi deletado!");
-                    }
+                try {
+                    operacoes.apagar(codBarrasField.getText());
+                    codBarrasField.setText("");
+                } catch (RuntimeException ex) {
+                    ex.printStackTrace();
                 }
             }
         });
     }
 
     private void atualizarTabela() {
-        // atualizar tabela pelo banco de dados
-        tableModel.setRowCount(0);
-        estoques = new EstoqueDAO().listarTodos();
-        for (Estoque estoque : estoques) {
-            tableModel.addRow(
-                    new Object[] { estoque.getNomeProduto(), estoque.getCodBarras(), estoque.getpreco(),
-                            estoque.getquantidade() });
+        try {
+            // atualizar tabela pelo banco de dados
+            tableModel.setRowCount(0);
+            estoques = new EstoqueDAO().listarTodos();
+            for (Estoque estoque : estoques) {
+                tableModel.addRow(new Object[] { estoque.getNomeProduto(), estoque.getCodBarras(),
+                        estoque.getquantidade(), estoque.getpreco() });
+            }
+        } catch (RuntimeException ex) {
+            ex.printStackTrace();
         }
     }
 }
