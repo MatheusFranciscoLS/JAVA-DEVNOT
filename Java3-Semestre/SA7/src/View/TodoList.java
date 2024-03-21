@@ -175,11 +175,6 @@ public class TodoList extends JFrame {
             Task task = tasks.get(selectedIndex);
             task.setDone(true); // Define a tarefa como concluída
 
-
-            taskDones.add(task); // Adiciona a tarefa concluída à lista de tarefas concluídas
-            tasks.remove(selectedIndex); // Remove a tarefa da lista de tarefas pendentes
-    
-
             updateTaskList(); // Atualiza a lista de tarefas na interface gráfica
             JOptionPane.showMessageDialog(this, "Tarefa Concluída", "Tarefa Concluída",
                     JOptionPane.INFORMATION_MESSAGE);

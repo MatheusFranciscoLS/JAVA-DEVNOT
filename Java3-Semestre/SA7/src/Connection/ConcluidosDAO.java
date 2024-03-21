@@ -8,13 +8,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import Connection.ConnectionFactory;
-
 public class ConcluidosDAO {
     private Connection connection;
     private List<Done> taskDones;
 
-    public EstoqueDAO() {
+    public ConcluidosDAO() {
         // Obtém uma conexão ao banco de dados ao instanciar o DAO
         this.connection = ConnectionFactory.getConnection();
     }
@@ -45,11 +43,9 @@ public class ConcluidosDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                // Para cada registro no ResultSet, cria um objeto Estoque com os valores do
-                // registro
-                Done taskDone = new Done(
-                        rs.getString("task"),
-                        tasksDones.add(taskDone));
+                // Para cada registro no ResultSet, cria um objeto Done com os valores do registro
+                Done taskDone = new Done(rs.getString("task"));
+                taskDones.add(taskDone);
             }
         } catch (SQLException ex) {
             // Em caso de erro durante a consulta, imprime o erro
@@ -61,7 +57,7 @@ public class ConcluidosDAO {
         return taskDones;
     }
 
-    // Cadastra produto no banco
+    // Cadastra tarefa no banco
     public void cadastrar(String description) {
         PreparedStatement stmt = null;
         String sql = "INSERT INTO task_done (task) VALUES (?)";
@@ -80,14 +76,14 @@ public class ConcluidosDAO {
     // Atualiza dados no banco
     public void atualizar(String description) {
         PreparedStatement stmt = null;
-    
+
         String sql = "UPDATE task_done SET task = ? WHERE task = ?";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, description);
-    
+
             stmt.executeUpdate();
-    
+
             System.out.println("Dados atualizados com sucesso");
             JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso ✅");
         } catch (SQLException e) {
